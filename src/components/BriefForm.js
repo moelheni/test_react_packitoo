@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
+import {
+  Box,
+  FormControl,
+  Button,
+  Select,
+  MenuItem,
+  TextField,
+} from '@material-ui/core';
 
 import { loadProducts, createBrief } from '../actions'
 
@@ -26,31 +34,30 @@ function BriefForm({ products, loadProducts, createBrief }) {
     createBrief(formData)
   }
 
-  return <div className='brief-form'>
+  return <Box className='brief-form'>
     {
       products.isFetching && 'isFetching...'
     }
     {
       !products.isFetching &&
-      <form onSubmit={handleSubmit}>
-        <input placeholder='Title' name='title' onChange={handleChange} /> <br />
-        <textarea placeholder='Comment' name='comment' onChange={handleChange} /> <br />
-        <select name='productId' onChange={handleChange}>
-          <option disabled selected>Select Product</option>
+      <FormControl onSubmit={handleSubmit} fullWidth>
+        <TextField fullWidth label='Title' name='title' onChange={handleChange} /> <br />
+        <TextField fullWidth multiline label='Comment' name='comment' onChange={handleChange} /> <br />
+        <Select fullWidth value={formData.productId} name='productId' onChange={handleChange}>
+          <MenuItem value={-1} disabled selected>Select Product</MenuItem>
           {
             products.data.map((product => (
-              <option value={product.id}>
+              <MenuItem value={product.id}>
                 { product.name }
-              </option>
+              </MenuItem>
             )))
           }
-        </select>
+        </Select>
         <br />
-        { JSON.stringify(formData) }
-        <button>Add brief</button>
-      </form>
+        <Button onClick={handleSubmit} variant="contained" color="primary">Add brief</Button>
+      </FormControl>
     }
-  </div>
+  </Box>
 }
 
 const mapStateToProps = state => ({
