@@ -4,3 +4,10 @@ export function setProducts(products) {
     payload: products
   }
 }
+
+export function addBrief(brief) {
+  return {
+    type: 'ADD_BRIEF',
+    payload: brief
+  }
+}
