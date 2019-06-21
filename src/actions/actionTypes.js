@@ -1,13 +1,25 @@
-export function setProducts(products) {
+export function requestProducts(products) {
   return {
-    type: 'SET_PRODUCTS',
+    type: 'GET_PRODUCTS_REQUEST',
+  }
+}
+
+export function successProducts(products) {
+  return {
+    type: 'GET_PRODUCTS_SUCCESS',
     payload: products
   }
 }
 
-export function addBrief(brief) {
+export function requestAddBrief() {
   return {
-    type: 'ADD_BRIEF',
+    type: 'ADD_BRIEF_REQUEST'
+  }
+}
+
+export function successAddBrief(brief) {
+  return {
+    type: 'ADD_BRIEF_SUCCESS',
     payload: brief
   }
 }

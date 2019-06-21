@@ -5,8 +5,11 @@ function BriefList({ products, briefs }) {
   return <div className='brief-list'>
     <h1>briefs</h1>
     {
-      briefs.map(brief => {
-        const productName = (products.filter(p => p.id == brief.productId)[0] || { name: 'Unkown product' }).name
+      briefs.isFetching && 'Adding Brief ...'
+    }
+    {
+      briefs.data.map(brief => {
+        const productName = (products.data.filter(p => p.id == brief.productId)[0] || { name: 'Unkown product' }).name
         return <div className="brief-item">
           <h2>{ brief.title }</h2>
           <p>{ brief.comment }</p>

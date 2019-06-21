@@ -27,23 +27,29 @@ function BriefForm({ products, loadProducts, createBrief }) {
   }
 
   return <div className='brief-form'>
-    <form onSubmit={handleSubmit}>
-      <input placeholder='Title' name='title' onChange={handleChange} /> <br />
-      <textarea placeholder='Comment' name='comment' onChange={handleChange} /> <br />
-      <select name='productId' onChange={handleChange}>
-        <option disabled selected>Select Product</option>
-        {
-          products.map((product => (
-            <option value={product.id}>
-              { product.name }
-            </option>
-          )))
-        }
-      </select>
-      <br />
-      { JSON.stringify(formData) }
-      <button>Add brief</button>
-    </form>
+    {
+      products.isFetching && 'isFetching...'
+    }
+    {
+      !products.isFetching &&
+      <form onSubmit={handleSubmit}>
+        <input placeholder='Title' name='title' onChange={handleChange} /> <br />
+        <textarea placeholder='Comment' name='comment' onChange={handleChange} /> <br />
+        <select name='productId' onChange={handleChange}>
+          <option disabled selected>Select Product</option>
+          {
+            products.data.map((product => (
+              <option value={product.id}>
+                { product.name }
+              </option>
+            )))
+          }
+        </select>
+        <br />
+        { JSON.stringify(formData) }
+        <button>Add brief</button>
+      </form>
+    }
   </div>
 }
 
