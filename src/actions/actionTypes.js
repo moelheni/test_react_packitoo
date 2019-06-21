@@ -1,3 +1,6 @@
-export const CHANGE_TEST = {
-  type: 'CHANGE_TEST'
+export function setProducts(products) {
+  return {
+    type: 'SET_PRODUCTS',
+    payload: products
+  }
 }

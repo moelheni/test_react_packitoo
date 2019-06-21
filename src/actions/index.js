@@ -1,9 +1,19 @@
+import axios from 'axios'
+
 import {
-  CHANGE_TEST,
+  setProducts,
 } from './actionTypes'
 
-export function changeTest() {
-  return dispatch => {
-    dispatch(CHANGE_TEST)
+import { buildRestUrl } from '../utils/rest'
+
+
+export function loadProducts() {
+  return async dispatch => {
+    try {
+      const { data: products } = await axios.get(buildRestUrl('/products'))
+      dispatch(setProducts(products))
+    } catch (e) {
+      // handle error in server
+    }
   }
 }

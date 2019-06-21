@@ -1,22 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-import { changeTest } from '../actions'
+import BriefForm from './BriefForm'
 
-function App({ test, changeTest }) {
+function App() {
   return (
     <div className="App">
-      <h1 onClick={changeTest}>{test}</h1>
+      <BriefForm />
     </div>
   );
 }
 
-const mapStateToProps = state => ({
-  test: state.testReducer
-})
-
-const mapDispatchToProps = dispatch => ({
-  changeTest: () => dispatch(changeTest())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
