@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { loadProducts, createBrief } from '../actions'
 
-function BriefForm({ products, loadProducts, briefs, createBrief }) {
+function BriefForm({ products, loadProducts, createBrief }) {
   const [formData, setFormData] = useState({
     title: '',
     comment: '',
@@ -44,10 +44,6 @@ function BriefForm({ products, loadProducts, briefs, createBrief }) {
       { JSON.stringify(formData) }
       <button>Add brief</button>
     </form>
-    briefs <br />
-    {
-      briefs.map(e => JSON.stringify(e))
-    }
   </div>
 }
 
