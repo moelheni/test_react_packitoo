@@ -12,6 +12,18 @@ export default function briefsReducer(state = {data: [], isFetching: false}, act
         isFetching: false,
       }
       break;
+    case 'GET_BRIEFS_REQUEST':
+      return {
+        ...state,
+        isFetching: true,
+      }
+      break;
+    case 'GET_BRIEFS_SUCCESS':
+      return {
+        data: action.payload,
+        isFetching: false,
+      }
+      break;
     default:
       return state
   }
