@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 
+import { getBriefsJoinProducts } from '../selectors'
+
 import {
   Card,
   CardContent,
@@ -18,12 +20,11 @@ function BriefList({ products, briefs }) {
         <h1>briefs</h1>
         {
           briefs.data.map(brief => {
-            const productName = (products.data.filter(p => p.id == brief.productId)[0] || { name: 'Unkown product' }).name
             return <Card color="text.primary" className="brief-item">
               <CardContent>
                 <h2>{ brief.title }</h2>
                 <p>{ brief.comment }</p>
-                <Chip label={productName} />
+                <Chip label={brief.productName} />
               </CardContent>
             </Card>
           })
@@ -39,7 +40,7 @@ function BriefList({ products, briefs }) {
 
 const mapStateToProps = state => ({
   products: state.products,
-  briefs: state.briefs,
+  briefs: getBriefsJoinProducts(state),
 })
 
 export default connect(mapStateToProps)(BriefList);
