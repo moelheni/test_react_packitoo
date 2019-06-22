@@ -8,7 +8,7 @@ import {
   Card,
   CardContent,
   Chip,
-  TextField,
+  InputBase,
 } from '@material-ui/core';
 
 function BriefList({ products, briefs, briefsCount, loadBriefs, setProductNameQuery }) {
@@ -22,13 +22,19 @@ function BriefList({ products, briefs, briefsCount, loadBriefs, setProductNameQu
 
   return <div className='brief-list'>
     {
-      briefs.isFetching && 'Adding Brief ...'
+      briefs.isFetching && 'Loading ...'
     }
     {
       !!briefsCount &&
       <>
-        <h1>briefs</h1>
-        <TextField fullWidth label='Search by product' onChange={handleChange} /> <br /><br />
+        <div className="briefs-header">
+          <h1>Briefs</h1>
+          <InputBase
+              placeholder="Search by product…"
+              onChange={handleChange}
+              className="search-input"
+            />
+        </div>
         {
           briefs.data.map(brief => {
             return <Card color="text.primary" className="brief-item" key={brief.id}>
@@ -43,7 +49,7 @@ function BriefList({ products, briefs, briefsCount, loadBriefs, setProductNameQu
       </>
     }
     {
-      !briefsCount &&
+      !briefsCount && !briefs.isFetching &&
       <h1>No briefs yet</h1>
     }
   </div>

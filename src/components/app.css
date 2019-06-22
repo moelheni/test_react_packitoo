@@ -1,3 +1,50 @@
 body{
-  font-family: 'Roboto'
+  font-family: 'Roboto';
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* As there is little css i used vanilla css and one file, usualy I prefer scss and one file by component or using styled-component */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.brief-form{
+  height: 100vh;
+  background-color: #F4F4F4;
+  padding: 20px;
+}
+
+.brief-item{
+  animation: fade-in .3s;
+  margin: 20px 0;
+}
+
+.brief-list{
+  padding: 20px;
+  height: 100vh;
+  overflow: auto;
+}
+
+.briefs-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-input{
+  border-radius: 5px;
+  border: solid 1px #F4F4F4;
+  background-color: rgba(245, 240, 240, 0.5);
+  height: 40px;
+  padding: 0 15px;
 }

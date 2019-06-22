@@ -11,7 +11,7 @@ import {
 
 import { loadProducts, createBrief } from '../actions'
 
-function BriefForm({ products, loadProducts, createBrief }) {
+function BriefForm({ products, briefs, loadProducts, createBrief }) {
   const [formData, setFormData] = useState({
     title: '',
     comment: '',
@@ -36,11 +36,12 @@ function BriefForm({ products, loadProducts, createBrief }) {
 
   return <Box className='brief-form'>
     {
-      products.isFetching && 'isFetching...'
+      products.isFetching && 'Loading...'
     }
     {
       !products.isFetching &&
-      <FormControl onSubmit={handleSubmit} fullWidth>
+      <FormControl onSubmit={handleSubmit} fullWidth className="form">
+        <h1>Add a new brief</h1>
         <TextField fullWidth label='Title' name='title' onChange={handleChange} /> <br />
         <TextField fullWidth multiline label='Comment' name='comment' onChange={handleChange} /> <br />
         <Select fullWidth value={formData.productId} name='productId' onChange={handleChange}>
@@ -54,7 +55,11 @@ function BriefForm({ products, loadProducts, createBrief }) {
           }
         </Select>
         <br />
-        <Button onClick={handleSubmit} variant="contained" color="primary">Add brief</Button>
+        <Button onClick={handleSubmit} variant="contained" color="primary">
+          {
+            briefs.isAdding ? 'Loading..' : 'Add brief'
+          }
+        </Button>
       </FormControl>
     }
   </Box>

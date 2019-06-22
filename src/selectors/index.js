@@ -14,10 +14,9 @@ export const getBriefsJoinProducts = createSelector(
         productName: (products.data.filter(p => p.id == brief.productId)[0] || { name: 'Unkown product' }).name
       })).filter(brief => {
         return Object.keys(query).reduce((match, q) => {
-          console.log(q, brief[q], query[q])
-          return match && brief[q].indexOf(query[q]) > -1
+          return match && brief[q].toLowerCase().indexOf(query[q].toLowerCase()) > -1
         }, true)
-      })
+      }).reverse()
     }
   }
 )

@@ -1,15 +1,15 @@
-export default function briefsReducer(state = {data: [], isFetching: false}, action) {
+export default function briefsReducer(state = {data: [], isFetching: false, isAdding: false}, action) {
   switch (action.type) {
     case 'ADD_BRIEF_REQUEST':
       return {
         ...state,
-        isFetching: true,
+        isAdding: true,
       }
       break;
     case 'ADD_BRIEF_SUCCESS':
       return {
         data: state.data.concat(action.payload),
-        isFetching: false,
+        isAdding: false,
       }
       break;
     case 'GET_BRIEFS_REQUEST':
